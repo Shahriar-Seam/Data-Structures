@@ -9,15 +9,29 @@ public class Main {
         singlyLinkedList.prepend(5);
         singlyLinkedList.append(50);
 
-        singlyLinkedList.remove_node(singlyLinkedList.getHead());
-        singlyLinkedList.remove_node(singlyLinkedList.getHead());
-        singlyLinkedList.remove_node(singlyLinkedList.getHead());
+//        singlyLinkedList.remove_node(singlyLinkedList.getHead());
+//        singlyLinkedList.remove_node(singlyLinkedList.getHead());
+//        singlyLinkedList.remove_node(singlyLinkedList.getHead());
 //        singlyLinkedList.remove_node(singlyLinkedList.getHead());
 
+        singlyLinkedList.remove_node(singlyLinkedList.search(90));
 
-        System.out.println(singlyLinkedList.getHead() == singlyLinkedList.getTail());
+
+        System.out.println(singlyLinkedList.getHead() + " " + singlyLinkedList.getTail());
+
+        singlyLinkedList.reverse();
+
+//        singlyLinkedList.clear();
+
+//        singlyLinkedList.removeTail();
+
         singlyLinkedList.print_list();
 
-//        System.out.println(singlyLinkedList.getTail().getData());
+        System.out.println("First: " + singlyLinkedList.getFirst());
+        System.out.println("Last: " + singlyLinkedList.getLast());
+
+        System.out.println("Size: " + singlyLinkedList.getSize());
+
+        System.out.println("Tail: " + singlyLinkedList.getTail());
     }
 }

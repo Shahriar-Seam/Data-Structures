@@ -1,9 +1,7 @@
 package LinkedList;
 
-import javax.swing.plaf.IconUIResource;
-
 public class SinglyLinkedList {
-    class node {
+    private class node {
         private int data;
         private node next;
 
@@ -39,6 +37,10 @@ public class SinglyLinkedList {
         size = 0;
     }
 
+    public boolean isEmpty() {
+        return this.size == 0;
+    }
+
     public node getHead() {
         return head;
     }
@@ -51,6 +53,28 @@ public class SinglyLinkedList {
         return size;
     }
 
+    public int getFirst() {
+        if (this.isEmpty()) {
+            System.out.println("The list is empty");
+
+            return -1;
+        }
+        else {
+            return head.getData();
+        }
+    }
+
+    public int getLast() {
+        if (this.isEmpty()) {
+            System.out.println("The list is empty");
+
+            return -1;
+        }
+        else {
+            return tail.getData();
+        }
+    }
+
     public void prepend(int data) {
         head = new node(data, head);
 
@@ -61,7 +85,7 @@ public class SinglyLinkedList {
         size++;
     }
 
-    void append(int data) {
+    public void append(int data) {
         if (head == null) {
             prepend(data);
         }
@@ -73,7 +97,7 @@ public class SinglyLinkedList {
         size++;
     }
 
-    void insert(node n, int data) throws IllegalArgumentException {
+    public void insert(node n, int data) throws IllegalArgumentException {
         if (n == null) {
             throw new IllegalArgumentException("Invalid address provided (NULL).");
         }
@@ -84,7 +108,19 @@ public class SinglyLinkedList {
         }
     }
 
-    void removeTail() {
+    public void removeHead() {
+        if (head != null) {
+            head = head.getNext();
+
+            if (head == null) {
+                tail = null;
+            }
+
+            size--;
+        }
+    }
+
+    public void removeTail() {
         node current_node = head;
 
         if (current_node == null) {
@@ -92,6 +128,10 @@ public class SinglyLinkedList {
         }
         if (current_node.getNext() == null) {
             head = tail = null;
+
+            size--;
+
+            return;
         }
 
         while (current_node.getNext().getNext() != null) {
@@ -101,31 +141,85 @@ public class SinglyLinkedList {
         current_node.setNext(null);
 
         tail = current_node;
+
+        size--;
     }
 
-    void remove_node(node n) throws IllegalArgumentException {
-        if (n == null) {
-            throw new IllegalArgumentException("Invalid address provided (NULL).");
-        }
-        else {
-            if (n != tail) {
-                if (n.getNext() != null) {
-                    n.setData(n.getNext().getData());
-                    n.setNext(n.getNext().getNext());
+    public void remove_node(node n) {
+        if (n != null) {
+            if (n.getNext() != tail) {
+                if (n == tail) {
+                    removeTail();
                 }
                 else {
+                    n.setData(n.getNext().getData());
+                    n.setNext(n.getNext().getNext());
 
+                    size--;
                 }
             }
             else {
-                removeTail();
-            }
+                node current_node = head;
 
-            size--;
+                if (n == head) {
+                    removeHead();
+
+                    return;
+                }
+
+                while (current_node.getNext().getNext() != tail) {
+                    current_node = current_node.getNext();
+                }
+
+                current_node.setNext(current_node.getNext().getNext());
+
+                size--;
+            }
         }
     }
 
-    void print_list() {
+    public node search(int data) {
+        if (isEmpty()) {
+            return null;
+        }
+
+        node current_node = head;
+
+        while (current_node != null) {
+            if (current_node.getData() == data) {
+                break;
+            }
+
+            current_node = current_node.getNext();
+        }
+
+        return current_node;
+    }
+
+    public void reverse() {
+        if (!isEmpty()) {
+            node current_node = head, reverse_head = null;
+
+            tail = head;
+
+            while (current_node != null) {
+                reverse_head = new node(current_node.data, reverse_head);
+
+                current_node = current_node.getNext();
+            }
+
+            head = reverse_head;
+
+            tail.setNext(null);
+        }
+    }
+
+    public void clear() {
+        head = tail = null;
+        size = 0;
+    }
+
+    public void print_list() {
         node current_node = head;
 
         while (current_node != null) {
