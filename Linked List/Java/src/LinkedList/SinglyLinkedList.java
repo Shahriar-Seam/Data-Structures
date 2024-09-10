@@ -84,24 +84,41 @@ public class SinglyLinkedList {
         }
     }
 
+    void removeTail() {
+        node current_node = head;
+
+        if (current_node == null) {
+            return;
+        }
+        if (current_node.getNext() == null) {
+            head = tail = null;
+        }
+
+        while (current_node.getNext().getNext() != null) {
+            current_node = current_node.getNext();
+        }
+
+        current_node.setNext(null);
+
+        tail = current_node;
+    }
+
     void remove_node(node n) throws IllegalArgumentException {
         if (n == null) {
             throw new IllegalArgumentException("Invalid address provided (NULL).");
         }
         else {
             if (n != tail) {
-                n.setData(n.getNext().getData());
-                n.setNext(n.getNext().getNext());
+                if (n.getNext() != null) {
+                    n.setData(n.getNext().getData());
+                    n.setNext(n.getNext().getNext());
+                }
+                else {
+
+                }
             }
             else {
-                node current_node = head;
-
-                while (current_node.getNext() != null) {
-                    current_node = current_node.getNext();
-                }
-
-                current_node.setNext(null);
-                tail = current_node;
+                removeTail();
             }
 
             size--;

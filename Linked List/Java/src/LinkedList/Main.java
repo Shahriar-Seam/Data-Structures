@@ -15,7 +15,7 @@ public class Main {
 //        singlyLinkedList.remove_node(singlyLinkedList.getHead());
 
 
-        System.out.println(singlyLinkedList.getHead().getNext() + " " + singlyLinkedList.getTail().getNext());
+        System.out.println(singlyLinkedList.getHead() == singlyLinkedList.getTail());
         singlyLinkedList.print_list();
 
 //        System.out.println(singlyLinkedList.getTail().getData());
