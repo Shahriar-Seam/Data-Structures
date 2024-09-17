@@ -1,32 +1,6 @@
 package LinkedList;
 
-public class SinglyLinkedList {
-    private class node {
-        private int data;
-        private node next;
-
-        public node(int data, node next) {
-            this.data = data;
-            this.next = next;
-        }
-
-        public int getData() {
-            return data;
-        }
-
-        public node getNext() {
-            return next;
-        }
-
-        public void setData(int data) {
-            this.data = data;
-        }
-
-        public void setNext(node next) {
-            this.next = next;
-        }
-    }
-
+public class SinglyLinkedList <Item> {
     private node head;
     private node tail;
     private int size;
@@ -53,29 +27,29 @@ public class SinglyLinkedList {
         return size;
     }
 
-    public int getFirst() {
+    public Item getFirst() {
         if (this.isEmpty()) {
             System.out.println("The list is empty");
 
-            return -1;
+            return null;
         }
         else {
-            return head.getData();
+            return (Item) head.getData();
         }
     }
 
-    public int getLast() {
+    public Item getLast() {
         if (this.isEmpty()) {
             System.out.println("The list is empty");
 
-            return -1;
+            return null;
         }
         else {
-            return tail.getData();
+            return (Item) tail.getData();
         }
     }
 
-    public void prepend(int data) {
+    public void prepend(Item data) {
         head = new node(data, head);
 
         if (tail == null) {
@@ -85,7 +59,7 @@ public class SinglyLinkedList {
         size++;
     }
 
-    public void append(int data) {
+    public void append(Item data) {
         if (head == null) {
             prepend(data);
         }
@@ -97,7 +71,7 @@ public class SinglyLinkedList {
         size++;
     }
 
-    public void insert(node n, int data) throws IllegalArgumentException {
+    public void insert(node n, Item data) throws IllegalArgumentException {
         if (n == null) {
             throw new IllegalArgumentException("Invalid address provided (NULL).");
         }
@@ -178,7 +152,7 @@ public class SinglyLinkedList {
         }
     }
 
-    public node search(int data) {
+    public node search(Item data) {
         if (isEmpty()) {
             return null;
         }
@@ -203,7 +177,7 @@ public class SinglyLinkedList {
             tail = head;
 
             while (current_node != null) {
-                reverse_head = new node(current_node.data, reverse_head);
+                reverse_head = new node(current_node.getData(), reverse_head);
 
                 current_node = current_node.getNext();
             }
@@ -225,7 +199,7 @@ public class SinglyLinkedList {
         while (current_node != null) {
             System.out.println(current_node.getData());
 
-            current_node = current_node.next;
+            current_node = current_node.getNext();
         }
     }
 }
