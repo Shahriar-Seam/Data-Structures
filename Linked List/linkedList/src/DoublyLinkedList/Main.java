@@ -2,7 +2,7 @@ package DoublyLinkedList;
 
 public class Main {
     public static void main(String[] args) {
-        DoublyLinkedList doublyLinkedList = new DoublyLinkedList ();
+        DoublyLinkedList <Integer> doublyLinkedList = new DoublyLinkedList <Integer> ();
 
         for (int i = 1; i <= 6; i++) {
             doublyLinkedList.addLast(i);
@@ -10,6 +10,10 @@ public class Main {
 
         System.out.println("Middle = " + doublyLinkedList.findMiddle());
 
-        System.out.println(doublyLinkedList);
+//        System.out.println(doublyLinkedList);
+
+        for (Integer i : doublyLinkedList) {
+            System.out.print(i + " ");
+        }
     }
 }

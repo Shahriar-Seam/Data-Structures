@@ -2,7 +2,9 @@ package SinglyLinkedList;
 
 import Node.Node;
 
-public class SinglyLinkedList <Item> {
+import java.util.Iterator;
+
+public class SinglyLinkedList <Item> implements Iterable <Item> {
     private Node <Item> head;
     private Node <Item> tail;
     private int size;
@@ -294,5 +296,28 @@ public class SinglyLinkedList <Item> {
         }
 
         return sb.toString();
+    }
+
+    private class ListIterator implements Iterator <Item> {
+        private Node current = head;
+
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        public void remove() {
+//            Nothing to see here
+        }
+
+        public Item next() {
+            Item item = (Item) current.getData();
+            current = current.getNext();
+            return item;
+        }
+    }
+
+    @Override
+    public Iterator<Item> iterator() {
+        return new ListIterator();
     }
 }

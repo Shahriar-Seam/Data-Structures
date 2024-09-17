@@ -1,20 +1,20 @@
 package DoublyLinkedList;
 
-import Node.Node;
+import java.util.Iterator;
 
-public class DoublyLinkedList {
+public class DoublyLinkedList <Item> implements Iterable <Item> {
     private class dNode {
-        private int data;
+        private Item data;
         private dNode previous;
         private dNode next;
 
-        public dNode(int data, dNode previous, dNode next) {
+        public dNode(Item data, dNode previous, dNode next) {
             this.data = data;
             this.previous = previous;
             this.next = next;
         }
 
-        public int getData() {
+        public Item getData() {
             return data;
         }
 
@@ -26,7 +26,7 @@ public class DoublyLinkedList {
             return next;
         }
 
-        public void setData(int data) {
+        public void setData(Item data) {
             this.data = data;
         }
 
@@ -49,8 +49,8 @@ public class DoublyLinkedList {
     private int size;
 
     public DoublyLinkedList() {
-        header = new dNode(-1, null, null);
-        trailer = new dNode(-1, null, null);
+        header = new dNode(null, null, null);
+        trailer = new dNode(null, null, null);
 
         header.setNext(trailer);
         trailer.setPrevious(header);
@@ -66,38 +66,38 @@ public class DoublyLinkedList {
         return size == 0;
     }
 
-    public int getFirst() {
+    public Item getFirst() {
         if (!isEmpty()) {
-            return (int) header.getNext().getData();
+            return (Item) header.getNext().getData();
         }
         else {
-            return -1;
+            return null;
         }
     }
 
-    public int getLast() {
+    public Item getLast() {
         if (!isEmpty()) {
-            return (int) trailer.getPrevious().getData();
+            return (Item) trailer.getPrevious().getData();
         }
         else {
-            return -1;
+            return null;
         }
     }
 
-    private void addBetween(int data, dNode previous, dNode next) {
+    private void addBetween(Item data, dNode previous, dNode next) {
         dNode n = new dNode (data, previous, next);
 
         previous.setNext(n);
         next.setPrevious(n);
     }
 
-    public void addFirst(int data) {
+    public void addFirst(Item data) {
         addBetween(data, header, header.getNext());
 
         size++;
     }
 
-    public void addLast(int data) {
+    public void addLast(Item data) {
         addBetween(data, trailer.getPrevious(), trailer);
 
         size++;
@@ -114,8 +114,8 @@ public class DoublyLinkedList {
     }
 
 
-    public int removeFirst() {
-        int it = getFirst();
+    public Item removeFirst() {
+        Item it = getFirst();
 
         if (!isEmpty()) {
             if (size > 1) {
@@ -131,8 +131,8 @@ public class DoublyLinkedList {
         return it;
     }
 
-    public int removeLast() {
-        int it = getLast();
+    public Item removeLast() {
+        Item it = getLast();
 
         if (!isEmpty()) {
             if (size > 1) {
@@ -148,23 +148,46 @@ public class DoublyLinkedList {
         return it;
     }
 
-    public int findMiddle() {
+    public Item findMiddle() {
         dNode forward = header.getNext();
         dNode backward = trailer.getPrevious();
 
         while (true) {
             if (forward == backward) {
-                return (int) forward.getData();
+                return (Item) forward.getData();
             }
 
             backward = backward.getPrevious();
 
             if (forward == backward) {
-                return (int) forward.getData();
+                return (Item) forward.getData();
             }
 
             forward = forward.getNext();
         }
+    }
+
+    private class ListIterator implements Iterator<Item> {
+        private dNode current = header.getNext();
+
+        public boolean hasNext() {
+            return current != trailer;
+        }
+
+        public void remove() {
+//            Nothing to see here
+        }
+
+        public Item next() {
+            Item item = (Item) current.getData();
+            current = current.getNext();
+            return item;
+        }
+    }
+
+    @Override
+    public Iterator<Item> iterator() {
+        return new ListIterator();
     }
 
     @Override
