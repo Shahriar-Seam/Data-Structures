@@ -2,7 +2,9 @@ package CircularlyLinkedList;
 
 import Node.Node;
 
-public class CircularlyLinkedList <Item> {
+import java.util.Iterator;
+
+public class CircularlyLinkedList <Item> implements Iterable <Item> {
     private Node <Item> tail;
     private int size;
 
@@ -23,25 +25,25 @@ public class CircularlyLinkedList <Item> {
         return size == 0;
     }
 
-    public int getFirst() {
+    public Item getFirst() {
         if (!isEmpty()) {
-            return (int) tail.getNext().getData();
+            return (Item) tail.getNext().getData();
         }
         else {
-            return -1;
+            return null;
         }
     }
 
-    public int getLast() {
+    public Item getLast() {
         if (!isEmpty()) {
-            return (int) tail.getData();
+            return (Item) tail.getData();
         }
         else {
-            return -1;
+            return null;
         }
     }
 
-    public void addFirst(int it) {
+    public void addFirst(Item it) {
         if (isEmpty()) {
             tail = new Node(it, null);
             tail.setNext(tail);
@@ -53,7 +55,7 @@ public class CircularlyLinkedList <Item> {
         size++;
     }
 
-    public void addLast(int it) {
+    public void addLast(Item it) {
         if (isEmpty()) {
             tail = new Node(it, null);
             tail.setNext(tail);
@@ -96,6 +98,33 @@ public class CircularlyLinkedList <Item> {
         if (!isEmpty()) {
             tail = tail.getNext();
         }
+    }
+
+    private class ListIterator implements Iterator<Item> {
+        private Node current = tail.getNext();
+        private int tempSize = 0;
+
+        public boolean hasNext() {
+            return tempSize != size;
+        }
+
+        public void remove() {
+//            Nothing to see here
+        }
+
+        public Item next() {
+            Item item = (Item) current.getData();
+            current = current.getNext();
+
+            tempSize++;
+
+            return item;
+        }
+    }
+
+    @Override
+    public Iterator<Item> iterator() {
+        return new ListIterator();
     }
 }
 

@@ -36,12 +36,17 @@ public class Main {
         list1.addLast(4);
         list1.addLast(3);
 
-        list1.removeDuplicates();
+//        list1.removeDuplicates();
+//
+//        System.out.println(list1);
+//
+//        list1.removeIfGreaterValueExistsLater();
+//
+//        System.out.println(list1);
 
-        System.out.println(list1);
-
-        list1.removeIfGreaterValueExistsLater();
-
-        System.out.println(list1);
+        System.out.println("List1:");
+        for (Integer i : list1) {
+            System.out.print(i + " ");
+        }
     }
 }
