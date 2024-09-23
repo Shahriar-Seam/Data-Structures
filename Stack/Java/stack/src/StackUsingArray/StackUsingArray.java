@@ -82,7 +82,9 @@ public class StackUsingArray <Item> implements Iterable <Item> {
         }
 
         @Override
-        public void remove() {}
+        public void remove() {
+            Iterator.super.remove();
+        }
     }
 
     @Override
@@ -94,8 +96,8 @@ public class StackUsingArray <Item> implements Iterable <Item> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        for (Item it : stack) {
-            sb.append(it.toString()).append(" ");
+        for (int i = size - 1; i >= 0; i--) {
+            sb.append(stack[i]).append(" ");
         }
 
         return sb.toString();
