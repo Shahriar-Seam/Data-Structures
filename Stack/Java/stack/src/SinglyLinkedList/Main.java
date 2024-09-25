@@ -23,18 +23,28 @@ public class Main {
 
         list1.clear();
 
-        list1.addLast(2);
-        list1.addLast(2);
-        list1.addLast(2);
-        list1.addLast(2);
-        list1.addLast(4);
-        list1.addLast(4);
-        list1.addLast(5);
-        list1.addLast(5);
-        list1.addLast(5);
-        list1.addLast(5);
-        list1.addLast(4);
-        list1.addLast(3);
+//        list1.addLast(2);
+//        list1.addLast(2);
+//        list1.addLast(2);
+//        list1.addLast(2);
+//        list1.addLast(4);
+//        list1.addLast(4);
+//        list1.addLast(5);
+//        list1.addLast(5);
+//        list1.addLast(5);
+//        list1.addLast(5);
+//        list1.addLast(4);
+//        list1.addLast(3);
+
+        list1.addFirst(2);
+        list1.addFirst(3);
+        list1.addFirst(4);
+        list1.addFirst(5);
+        list1.addFirst(6);
+        list1.addFirst(7);
+        list1.addFirst(8);
+        list1.addFirst(9);
+        list1.addFirst(10);
 
 //        list1.removeDuplicates();
 //

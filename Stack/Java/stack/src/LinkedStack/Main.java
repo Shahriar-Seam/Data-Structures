@@ -13,7 +13,6 @@ public class Main {
 
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            stack.push(c);
 
             if (c == '(' || c == '{' || c == '[') {
                 stack.push(c);
@@ -39,7 +38,7 @@ public class Main {
         System.out.println(stack.getSize());
 
         for (Character c : stack) {
-            System.out.println(c);
+            System.out.print(c + " ");
         }
     }
 }
