@@ -63,7 +63,7 @@ public class LinkedStack <Item> {
         LinkedStack <Character> buffer = new LinkedStack<Character>();
         StringBuilder postFixExpression = new StringBuilder();
         final String digits = "0123456789";
-        final String operators = "-+*/";
+        final String operators = "+-*/";
         final String opening = "({[";
         final String closing = ")}]";
 
@@ -74,7 +74,12 @@ public class LinkedStack <Item> {
                 while (digits.indexOf(c) != -1) {
                     postFixExpression.append(c);
 
-                    c = expression.charAt(++i);
+                    if (i + 1 < expression.length()) {
+                        c = expression.charAt(++i);
+                    }
+                    else {
+                        break;
+                    }
                 }
 
                 i--;
@@ -117,34 +122,34 @@ public class LinkedStack <Item> {
         return postFixExpression.toString();
     }
 
-    public static int evaluate(String expression) {
-        LinkedStack <Integer> buffer = new LinkedStack<Integer>();
-        final String digits = "0123456789";
-        final String operators = "-+*/";
-
-        for (int i = 0; i < expression.length(); i++) {
-            char c = expression.charAt(i);
-            int a = 0, b = 0, num = 0;
-
-            if (digits.indexOf(c) != -1) {
-                num = 0;
-
-                while (digits.indexOf(c) != -1) {
-                    num *= 10;
-
-                    num += c - '0';
-
-                    c = expression.charAt(++i);
-                }
-
-                buffer.push(num);
-
-                i--;
-
-                postFixExpression.append(",");
-            }
-        }
-    }
+//    public static int evaluate(String expression) {
+//        LinkedStack <Integer> buffer = new LinkedStack<Integer>();
+//        final String digits = "0123456789";
+//        final String operators = "-+*/";
+//
+//        for (int i = 0; i < expression.length(); i++) {
+//            char c = expression.charAt(i);
+//            int a = 0, b = 0, num = 0;
+//
+//            if (digits.indexOf(c) != -1) {
+//                num = 0;
+//
+//                while (digits.indexOf(c) != -1) {
+//                    num *= 10;
+//
+//                    num += c - '0';
+//
+//                    c = expression.charAt(++i);
+//                }
+//
+//                buffer.push(num);
+//
+//                i--;
+//
+//                postFixExpression.append(",");
+//            }
+//        }
+//    }
 
     @Override
     public String toString() {

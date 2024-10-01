@@ -202,7 +202,7 @@ public class SinglyLinkedList <Item> implements Iterable <Item> {
         }
     }
 
-    public SinglyLinkedList <Item> merge(SinglyLinkedList <Item> list) {
+    public SinglyLinkedList <Item> mergeTwoSorted(SinglyLinkedList <Item> list) {
         SinglyLinkedList <Item> newList = new SinglyLinkedList <Item> ();
 
         if (list.getHead().getData() instanceof Integer) {
@@ -314,6 +314,43 @@ public class SinglyLinkedList <Item> implements Iterable <Item> {
             current = current.getNext();
             return item;
         }
+    }
+
+    public void merge (SinglyLinkedList <Item> list2, Node <Item> node) {
+        Node current = this.head;
+
+        while (current != null && current.getData() != node.getData()) {
+            current = current.getNext();
+        }
+
+        Node current2 = list2.getHead();
+
+        while (current2.getNext() != null) {
+            current2 = current2.getNext();
+        }
+
+        current2.setNext(current);
+    }
+
+    public Item mergingPoint(SinglyLinkedList <Item> list2) {
+        Node current1 = this.head;
+        Node current2 = list2.getHead();
+
+        while (current1 != null) {
+            current2 = list2.getHead();
+
+            while (current2 != null) {
+                if (current1 == current2) {
+                    return (Item) current1.getData();
+                }
+
+                current2 = current2.getNext();
+            }
+
+            current1 = current1.getNext();
+        }
+
+        return null;
     }
 
     @Override

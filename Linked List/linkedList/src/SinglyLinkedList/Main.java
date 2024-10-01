@@ -17,7 +17,7 @@ public class Main {
         list2.addLast(4);
         list2.addLast(5);
 
-        SinglyLinkedList <Integer> list = list1.merge(list2);
+        SinglyLinkedList <Integer> list = list1.mergeTwoSorted(list2);
 
         System.out.println(list);
 
