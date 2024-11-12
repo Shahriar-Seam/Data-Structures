@@ -1,6 +1,6 @@
-package LinkedStack;
+package labTest3.LinkedStack;
 
-import SinglyLinkedList.SinglyLinkedList;
+import labTest3.SinglyLinkedList.SinglyLinkedList;
 
 import java.sql.Statement;
 import java.util.Iterator;
